@@ -11,11 +11,15 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #eef4ff, #f8fbff);
       color: #1f2937;
-      min-height: 100vh;
+      line-height: 1.6;
     }
 
     .wrapper {
@@ -29,12 +33,12 @@
       align-items: center;
       justify-content: space-between;
       gap: 40px;
-      min-height: 80vh;
+      min-height: 85vh;
       flex-wrap: wrap;
     }
 
     .hero-text {
-      flex: 1 1 500px;
+      flex: 1 1 520px;
     }
 
     .badge {
@@ -57,7 +61,6 @@
 
     .subtext {
       font-size: 20px;
-      line-height: 1.7;
       color: #4b5563;
       margin-bottom: 28px;
       max-width: 650px;
@@ -165,10 +168,32 @@
       color: #374151;
     }
 
+    .legal-section {
+      max-width: 950px;
+      margin: 0 auto 28px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 28px 22px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    }
+
+    .legal-section h2 {
+      font-size: 28px;
+      margin-bottom: 14px;
+      color: #111827;
+    }
+
+    .legal-section p {
+      font-size: 16px;
+      color: #374151;
+      margin-bottom: 12px;
+    }
+
     footer {
       text-align: center;
-      padding: 24px 20px 34px;
-      font-size: 13px;
+      padding: 28px 20px 36px;
+      font-size: 14px;
       color: #6b7280;
     }
 
@@ -178,10 +203,20 @@
       margin: 0 8px;
     }
 
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .back-top {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
     @media (max-width: 768px) {
       .hero {
         min-height: auto;
-        padding-top: 20px;
+        padding-top: 10px;
       }
 
       h1 {
@@ -200,11 +235,16 @@
       .hero-card {
         width: 100%;
       }
+
+      .legal-section h2 {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
+
+  <div class="wrapper" id="top">
     <section class="hero">
       <div class="hero-text">
         <div class="badge">Trusted by over 2 million users</div>
@@ -248,11 +288,38 @@
     </section>
   </div>
 
+  <div class="wrapper">
+    <section id="privacy" class="legal-section">
+      <h2>Privacy Policy</h2>
+      <p>We do not collect personal data directly through this website unless you voluntarily provide it.</p>
+      <p>This website may use cookies, analytics tools, and third-party tracking technologies to improve performance and measure traffic.</p>
+      <p>By using this website, you agree to this privacy policy and our use of standard website technologies.</p>
+      <a class="back-top" href="#top">Back to top</a>
+    </section>
+
+    <section id="terms" class="legal-section">
+      <h2>Terms & Conditions</h2>
+      <p>By accessing and using this website, you agree to use it for lawful purposes only.</p>
+      <p>All content is provided for informational and promotional purposes only and may be updated at any time without notice.</p>
+      <p>We make no guarantees regarding third-party offers, services, or outcomes linked from this website.</p>
+      <a class="back-top" href="#top">Back to top</a>
+    </section>
+
+    <section id="disclaimer" class="legal-section">
+      <h2>Disclaimer</h2>
+      <p>This website contains promotional content and may include affiliate links.</p>
+      <p>We may receive compensation when users click links or complete offers through third-party websites.</p>
+      <p>All trademarks, logos, and brand names belong to their respective owners.</p>
+      <a class="back-top" href="#top">Back to top</a>
+    </section>
+  </div>
+
   <footer>
     © 2026 All Rights Reserved |
-    <a href="#">Privacy Policy</a>
-    <a href="#">Terms</a>
-    <a href="#">Disclaimer</a>
+    <a href="#privacy">Privacy Policy</a>
+    <a href="#terms">Terms</a>
+    <a href="#disclaimer">Disclaimer</a>
   </footer>
+
 </body>
 </html>
