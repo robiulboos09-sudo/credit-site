@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Check Your Credit Score</title>
+  <title>Spike My Credit Score</title>
   <style>
     * {
       box-sizing: border-box;
@@ -11,59 +11,105 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #eef4ff, #f8fbff);
-      color: #1f2937;
+      background: #0b1220;
+      color: #e5e7eb;
       line-height: 1.6;
     }
 
+    .bg-glow {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 35%),
+        radial-gradient(circle at top right, rgba(14,165,233,0.14), transparent 30%),
+        radial-gradient(circle at bottom center, rgba(37,99,235,0.12), transparent 35%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .wrapper {
-      max-width: 1100px;
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 28px 20px 40px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #ffffff;
+    }
+
+    .brand span {
+      color: #60a5fa;
+    }
+
+    .trust-pill {
+      font-size: 13px;
+      color: #cbd5e1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 8px 14px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
     }
 
     .hero {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
       align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-      min-height: 85vh;
-      flex-wrap: wrap;
+      min-height: 78vh;
     }
 
-    .hero-text {
-      flex: 1 1 520px;
+    .hero-left {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 48px 38px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+      backdrop-filter: blur(10px);
     }
 
     .badge {
       display: inline-block;
-      background: #dbeafe;
-      color: #1d4ed8;
+      margin-bottom: 18px;
+      background: rgba(96,165,250,0.12);
+      color: #93c5fd;
+      border: 1px solid rgba(96,165,250,0.25);
       padding: 8px 14px;
       border-radius: 999px;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 18px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
     }
 
     h1 {
-      font-size: 56px;
-      line-height: 1.1;
+      font-size: 58px;
+      line-height: 1.06;
+      color: #ffffff;
       margin-bottom: 20px;
-      color: #111827;
+      max-width: 760px;
     }
 
     .subtext {
-      font-size: 20px;
-      color: #4b5563;
-      margin-bottom: 28px;
-      max-width: 650px;
+      font-size: 19px;
+      color: #cbd5e1;
+      max-width: 670px;
+      margin-bottom: 26px;
     }
 
     .benefits {
@@ -74,157 +120,195 @@
     }
 
     .benefit {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #e2e8f0;
       padding: 10px 14px;
       border-radius: 999px;
       font-size: 14px;
-      color: #374151;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 18px;
     }
 
     .cta-btn {
       display: inline-block;
-      background: #2563eb;
-      color: #ffffff;
       text-decoration: none;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: #ffffff;
       padding: 18px 34px;
-      font-size: 20px;
-      font-weight: bold;
-      border-radius: 12px;
-      transition: 0.25s ease;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.28);
+      border-radius: 14px;
+      font-size: 19px;
+      font-weight: 700;
+      box-shadow: 0 16px 35px rgba(37,99,235,0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
     }
 
     .cta-btn:hover {
-      background: #1d4ed8;
       transform: translateY(-2px);
+      box-shadow: 0 20px 40px rgba(37,99,235,0.42);
+      opacity: 0.98;
     }
 
-    .note {
-      margin-top: 16px;
-      font-size: 14px;
-      color: #6b7280;
+    .micro-note {
+      font-size: 13px;
+      color: #94a3b8;
     }
 
-    .hero-card {
-      flex: 1 1 360px;
-      background: #ffffff;
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 24px;
-      padding: 30px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-      border: 1px solid #eef2f7;
-    }
-
-    .score-box {
-      background: linear-gradient(135deg, #2563eb, #60a5fa);
-      border-radius: 20px;
       padding: 24px;
-      color: white;
-      margin-bottom: 22px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.24);
+      backdrop-filter: blur(10px);
     }
 
-    .score-title {
-      font-size: 16px;
-      opacity: 0.95;
-      margin-bottom: 10px;
+    .score-card {
+      padding: 28px;
+    }
+
+    .score-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .score-label {
+      color: #cbd5e1;
+      font-size: 15px;
+    }
+
+    .score-badge {
+      font-size: 12px;
+      background: rgba(34,197,94,0.14);
+      color: #86efac;
+      border: 1px solid rgba(34,197,94,0.22);
+      padding: 6px 10px;
+      border-radius: 999px;
     }
 
     .score-number {
-      font-size: 56px;
-      font-weight: bold;
+      font-size: 70px;
+      font-weight: 800;
+      color: #ffffff;
       line-height: 1;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .score-bar {
       width: 100%;
-      height: 10px;
-      background: rgba(255,255,255,0.28);
+      height: 12px;
+      background: rgba(255,255,255,0.09);
       border-radius: 999px;
       overflow: hidden;
+      margin-bottom: 12px;
     }
 
     .score-bar span {
       display: block;
       width: 74%;
       height: 100%;
-      background: #ffffff;
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
       border-radius: 999px;
     }
 
-    .mini-list {
+    .score-desc {
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    .info-list {
       list-style: none;
       display: grid;
       gap: 12px;
     }
 
-    .mini-list li {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      padding: 14px 16px;
-      border-radius: 14px;
+    .info-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 14px 14px;
+      color: #e2e8f0;
       font-size: 15px;
-      color: #374151;
     }
 
-    .legal-section {
-      max-width: 950px;
-      margin: 0 auto 28px;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      padding: 28px 22px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-top: 7px;
+      background: #60a5fa;
+      flex: 0 0 10px;
     }
 
-    .legal-section h2 {
-      font-size: 28px;
-      margin-bottom: 14px;
-      color: #111827;
-    }
-
-    .legal-section p {
-      font-size: 16px;
-      color: #374151;
-      margin-bottom: 12px;
-    }
-
-    footer {
+    .footer {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 10px auto 0;
+      padding: 22px 20px 34px;
       text-align: center;
-      padding: 28px 20px 36px;
       font-size: 14px;
-      color: #6b7280;
+      color: #94a3b8;
     }
 
-    footer a {
-      color: #2563eb;
+    .footer a {
+      color: #93c5fd;
       text-decoration: none;
       margin: 0 8px;
     }
 
-    footer a:hover {
+    .footer a:hover {
       text-decoration: underline;
     }
 
-    .back-top {
-      display: inline-block;
-      margin-top: 12px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: 980px) {
       .hero {
+        grid-template-columns: 1fr;
         min-height: auto;
-        padding-top: 10px;
       }
 
       h1 {
-        font-size: 38px;
+        font-size: 42px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrapper {
+        padding: 20px 14px 28px;
+      }
+
+      .hero-left,
+      .card {
+        border-radius: 20px;
+      }
+
+      .hero-left {
+        padding: 28px 20px;
+      }
+
+      h1 {
+        font-size: 34px;
       }
 
       .subtext {
-        font-size: 18px;
+        font-size: 17px;
       }
 
       .cta-btn {
@@ -232,94 +316,80 @@
         text-align: center;
       }
 
-      .hero-card {
-        width: 100%;
-      }
-
-      .legal-section h2 {
-        font-size: 24px;
+      .score-number {
+        font-size: 56px;
       }
     }
   </style>
 </head>
 <body>
+  <div class="bg-glow"></div>
 
-  <div class="wrapper" id="top">
+  <div class="wrapper">
+    <div class="topbar">
+      <div class="brand">Spike My <span>Credit Score</span></div>
+      <div class="trust-pill">Secure access • Simple process • Fast response</div>
+    </div>
+
     <section class="hero">
-      <div class="hero-text">
-        <div class="badge">Trusted by over 2 million users</div>
-        <h1>Check Your Credit Score in 60 Seconds</h1>
+      <div class="hero-left">
+        <div class="badge">Premium Credit Score Experience</div>
+        <h1>Check Your Credit Score With a Faster, Smarter Process</h1>
         <p class="subtext">
-          Get your free credit score instantly — no hidden fees, no credit card required,
-          and no impact on your score.
+          Get quick access to your credit score insights through a clean and simple process.
+          Designed for speed, clarity, and a better user experience.
         </p>
 
         <div class="benefits">
-          <div class="benefit">100% Free</div>
-          <div class="benefit">No Credit Card Required</div>
-          <div class="benefit">Soft Inquiry Only</div>
+          <div class="benefit">Fast Access</div>
+          <div class="benefit">Simple Process</div>
+          <div class="benefit">Clean Experience</div>
+          <div class="benefit">Credit Score Insights</div>
         </div>
 
-        <a
-          class="cta-btn"
-          href="https://afflat3e3.com/trk/lnk/A4B3F786-1C11-47A8-ADBD-7E6A0E9F6CDF/?o=28382&c=918277&a=769883&k=1C0799E419AFFFF1206B7D3C7B431805&l=31279&s1=Ads-1"
-        >
-          Check My Score Now
-        </a>
+        <div class="cta-row">
+          <a
+            class="cta-btn"
+            href="https://afflat3e3.com/trk/lnk/A4B3F786-1C11-47A8-ADBD-7E6A0E9F6CDF/?o=28382&c=918277&a=769883&k=1C0799E419AFFFF1206B7D3C7B431805&l=31279&s1=Ads-1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Check My Score Now
+          </a>
+        </div>
 
-        <div class="note">
-          Takes less than 1 minute. Quick and easy process.
+        <div class="micro-note">
+          Please review the linked offer page for full details and eligibility requirements.
         </div>
       </div>
 
-      <div class="hero-card">
-        <div class="score-box">
-          <div class="score-title">Estimated Score</div>
+      <div class="hero-right">
+        <div class="card score-card">
+          <div class="score-top">
+            <div class="score-label">Estimated Score Preview</div>
+            <div class="score-badge">Updated</div>
+          </div>
           <div class="score-number">742</div>
           <div class="score-bar"><span></span></div>
+          <div class="score-desc">Illustrative preview for visual presentation only.</div>
         </div>
 
-        <ul class="mini-list">
-          <li>See where your credit stands</li>
-          <li>Quick access in under 60 seconds</li>
-          <li>Simple and user-friendly process</li>
-        </ul>
+        <div class="card">
+          <ul class="info-list">
+            <li><span class="dot"></span><span>Access score-related insights with a simple and modern landing experience.</span></li>
+            <li><span class="dot"></span><span>Designed for mobile and desktop visitors with fast-loading layout.</span></li>
+            <li><span class="dot"></span><span>Privacy, terms, and disclaimer links are included for a more professional presentation.</span></li>
+          </ul>
+        </div>
       </div>
     </section>
   </div>
 
-  <div class="wrapper">
-    <section id="privacy" class="legal-section">
-      <h2>Privacy Policy</h2>
-      <p>We do not collect personal data directly through this website unless you voluntarily provide it.</p>
-      <p>This website may use cookies, analytics tools, and third-party tracking technologies to improve performance and measure traffic.</p>
-      <p>By using this website, you agree to this privacy policy and our use of standard website technologies.</p>
-      <a class="back-top" href="#top">Back to top</a>
-    </section>
-
-    <section id="terms" class="legal-section">
-      <h2>Terms & Conditions</h2>
-      <p>By accessing and using this website, you agree to use it for lawful purposes only.</p>
-      <p>All content is provided for informational and promotional purposes only and may be updated at any time without notice.</p>
-      <p>We make no guarantees regarding third-party offers, services, or outcomes linked from this website.</p>
-      <a class="back-top" href="#top">Back to top</a>
-    </section>
-
-    <section id="disclaimer" class="legal-section">
-      <h2>Disclaimer</h2>
-      <p>This website contains promotional content and may include affiliate links.</p>
-      <p>We may receive compensation when users click links or complete offers through third-party websites.</p>
-      <p>All trademarks, logos, and brand names belong to their respective owners.</p>
-      <a class="back-top" href="#top">Back to top</a>
-    </section>
-  </div>
-
-  <footer>
+  <div class="footer">
     © 2026 All Rights Reserved |
-    <a href="#privacy">Privacy Policy</a>
-    <a href="#terms">Terms</a>
-    <a href="#disclaimer">Disclaimer</a>
-  </footer>
-
+    <a href="https://www.termsfeed.com/live/42c75620-4910-4aba-a78a-a1a2d4ae63a7" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="https://www.freeprivacypolicy.com/live/dacb798e-3a70-480f-aaee-aef824f99cb6" target="_blank" rel="noopener noreferrer">Terms</a>
+    <a href="https://www.termsfeed.com/live/66b686d3-9c96-45ab-b4cd-d63c89b24c9e" target="_blank" rel="noopener noreferrer">Disclaimer</a>
+  </div>
 </body>
 </html>
